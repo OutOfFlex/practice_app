@@ -1,0 +1,15 @@
+﻿@using PracticeApp.Controllers
+
+@model PracticeApp.Models.User
+
+<form action="@Url.Action(nameof(UsersController.Edit))" method="@(Model.Id == null ? "POST" : "PUT")" onsubmit="onFormSubmit(event)">
+    @Html.HiddenFor(m => Model.Id)
+
+    <label asp-for=Login>Логин</label>
+    <input class="form-control" asp-for=Login required />
+
+    <label asp-for=RoleId>Роль</label>
+    @Html.DropDownListFor(m => Model.RoleId, (SelectList)ViewBag.UserRoles, "Выберите роль", new { required="", @class="form-control mb-2"})
+
+    <button class="btn btn-primary">Сохранить</button>
+</form>
